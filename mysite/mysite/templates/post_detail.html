@@ -1,0 +1,217 @@
+<style>
+  .back-btn {
+    background-color: #5454f0;
+    color: white;
+    border: none;
+    padding: 15px 20px;
+    font-size: 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+  }
+
+  .back-btn:hover {
+    background-color: #0012b3;
+  }
+
+  .back{
+    margin-top: 30px;
+    margin-left: 30px;
+  }
+
+  .btn {
+    background-color: #5454f0;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: #0012b3;
+  }
+
+  .container {
+    margin: 20px auto;
+    max-width: 1200px;
+  }
+
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .col {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .card-body {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+
+  .card-text {
+    font-size: 14px;
+    color: #6c757d;
+    margin-bottom: 10px;
+  }
+
+  .card-texts {
+    font-size: 14px;
+    color: #232629;
+    margin-bottom: 10px;
+    text-align: justify;
+  }
+
+  h1 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  .comments {
+    margin-bottom: 15px;
+    padding: 10px;
+    border-left: 4px solid #5454f0;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .font {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .comment-text {
+    font-size: 12px;
+    color: #6c757d;
+    margin-left: 10px;
+  }
+
+  .comment-alert {
+    background-color: #ffefc1;
+    padding: 10px;
+    border-radius: 4px;
+    color: #856404;
+    font-size: 14px;
+    margin-bottom: 15px;
+    border: 1px solid #ffeeba;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .form input,
+  .form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+
+  .form input:focus,
+  .form textarea:focus {
+    border-color: #5454f0;
+    outline: none;
+    box-shadow: 0 0 5px rgba(84, 84, 240, 0.3);
+  }
+
+  ::-webkit-scrollbar {
+    width: 12px; 
+    height: 12px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #5454f0; 
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #0012b3; 
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #f1f1f1; 
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-track:hover {
+    background-color: #e0e0e0; 
+  }
+
+</style>
+
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="back">
+    <button onclick="window.location.href='/'" class="back-btn">Back to Home</button>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col"> 
+        <div class="card-body">
+          <h1>{% block title %} {{ post.title }} {% endblock title %}</h1> 
+          <p class="card-text">{{ post.author }} | {{ post.created_on }}</p>
+          <p class="card-texts">{{ post.content | safe }}</p> 
+        </div>    
+        <div class="card-body">
+          <h2>{{ comments.count }} comments</h2>
+          {% for comment in comments %}
+          <div class="comments">
+            <p class="font"> 
+            {{ comment.name }}
+              <span class="comment-text">
+                {{ comment.created_on }}
+              </span>
+            </p>
+            {{ comment.body | linebreaks }}
+          </div>
+          {% endfor %} 
+        </div>
+        <div class="card-body">
+          {% if new_comment %}
+          <div class="comment-alert" role="alert">
+            Your comment is awaiting moderation
+          </div>
+          {% endif %}
+          {% if not new_comment %}
+          <h3>Leave a comment</h3>
+          <form method="post" class="form">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <button type="submit" class="btn">Submit</button>
+          </form>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}

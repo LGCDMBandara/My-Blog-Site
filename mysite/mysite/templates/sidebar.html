@@ -1,0 +1,66 @@
+{% block sidebar %}
+
+<style>
+    .card {
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.1);
+        border-radius: 15px;
+        overflow: hidden;
+        background: #fff;
+        transition: transform 0.3s, box-shadow 0.3s;
+        width: 500px;
+    }
+
+    .card-header {
+        background-color: #5454f0;
+        color: #fff; 
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        padding: 10px 20px;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-text {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #333; 
+    }
+
+    .btn-danger {
+        background-color: #5454f0;
+        border: none;
+        padding: 10px 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 30px;
+        transition: background-color 0.3s, transform 0.3s; 
+    }
+
+    .btn-danger:hover {
+        background-color: #426bc4;
+        transform: translateY(-3px); 
+    }
+
+</style>
+
+<div class="col-md-4 float-right">
+    <div class="card my-4">
+        <h5 class="card-header">About Me</h5>
+        <div class="card-body">
+            <p class="card-text">
+                I am a dedicated undergraduate student at Sabaragamuwa University of Sri Lanka, pursuing a BSc in Computer 
+                Science & Technology with a strong passion for full-stack web development. 💻✨ I bring a versatile skillset that includes 
+                HTML, CSS, JavaScript, and server-side languages like PHP and Java, enabling me to craft seamless front-end designs and robust 
+                back-end functionalities. 🔧📊 My expertise extends to database management, where I prioritize data integrity and security in 
+                every project. Driven by a hunger to learn and grow, I’m eager to collaborate, contribute, and develop innovative web applications 
+                that make a real-world impact. 🚀🌟
+            </p>
+            <a href="https://chathuradilshanporfolio.web.app/" class="btn btn-danger" target="_blank">Visit My Portfolio</a>
+        </div>
+    </div>
+</div>
+
+{% endblock sidebar %}

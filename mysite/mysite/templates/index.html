@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body {
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    background-color: #fdfdfd;
+    margin: 0;
+    padding: 0;
+    }
+
+    .head_text {
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .card {
+        box-shadow: 0 16px 48px #E3E7EB;
+        margin: 20px 0;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #ffffff;
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    .card-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #333333;
+    }
+
+    .card-text {
+        font-size: 14px;
+        color: #888888;
+        margin-bottom: 15px;
+    }
+
+    .card-details {
+        font-size: 16px;
+        color: #555555;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+
+    .primary {
+        color: #3398E1;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .primary:hover {
+        text-decoration: underline;
+    }
+
+    .masthead {
+        background: #5454f0;
+        height: 16.8vh;
+        padding-bottom: 15px;
+        box-shadow: 0 16px 48px #E3E7EB;
+        padding-top: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        text-align: center;
+    }
+
+    .site-heading {
+        margin: 0;
+    }
+
+    .site-topic {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .site-text {
+        font-size: 18px;
+        color: #fdfdfd;
+        margin-top: 0;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: -10px;
+    }
+
+    .col {
+        flex: 1;
+        padding: 10px;
+        max-height: 465px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        background-color: #f9f9f99a;
+        margin-top: 20px;
+        border-radius: 10px;
+        margin-right: 45px;
+        width: 50%;
+    }
+
+    .col::-webkit-scrollbar {
+        width: 8px; 
+    }
+
+    .col::-webkit-scrollbar-track {
+        background: #f1f1f1; 
+        border-radius: 30px;
+    }
+
+    .col::-webkit-scrollbar-thumb {
+        background: #5454f0; 
+        border-radius: 30px; 
+    }
+
+    .col::-webkit-scrollbar-thumb:hover {
+        background: #2828ee;
+    }
+
+    .col::-webkit-scrollbar-thumb:active {
+        background: #2b1ac4; 
+    }
+
+</style>
+
+<header class="masthead">
+    <div class="container">
+        <div class="row">
+            <div class="Site">
+                <div class="site-heading">
+                    <h3 class=" site-topic"> Welcome to My Blog Site</h3>
+                    <p class="site-text">Go-to space for insights on web development, technology trends, and more!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% for post in post_list %}
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">{{ post.title }}</h2>
+                    <p class="card-text">{{ post.author }} | {{ post.created_on}} </p>
+                    <p class="card-details">{{post.content|slice:":200" }}</p>
+                    <a href="{% url 'post_detail' post.slug  %}" class=" primary">Read More &rarr;</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+    </div>
+</div>
+{%endblock%}

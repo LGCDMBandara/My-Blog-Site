@@ -21,7 +21,7 @@ Welcome to my **Blog Site**, a platform to share insights, ideas, and knowledge 
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/blog-site.git](https://github.com/LGCDMBandara/My-Blog-Site.git
+git clone (https://github.com/LGCDMBandara/My-Blog-Site.git)
 cd blog-site
 ```
 
